@@ -23,7 +23,7 @@ const icon = (<svg className="h-6 w-6 text-blue-600" fill="none" stroke="current
 
   return (
     <>
-    <BasicCard headline={"External Spool"} icon={icon}>
+    <BasicCard headline={"External Spool"} icon={icon} subline={"test"}>
           <ExternalSpoolConfiguration />
     </BasicCard>
 

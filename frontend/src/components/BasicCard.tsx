@@ -16,8 +16,10 @@ export default function BasicCard(props: BasicCardProps) {
           <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">
             {props.icon}
           </div>
-          <h2 className="text-xl font-semibold text-gray-800">{props.headline}</h2>
-          {props.subline && (<h2 className="text-md font-semibold text-gray-600">{props.subline}</h2>)}
+          <div className="flex-row h-12 content-center">
+          <h2 className="text-xl font-semibold text-gray-800 ">{props.headline}</h2>
+          {props.subline && (<h2 className="text-xs font-semibold text-gray-600">{props.subline}</h2>)}
+          </div>
         </div>
         <div className="grid grid-cols-4 gap-4">
           {props.children}
