@@ -64,9 +64,18 @@ export default function AmsConfiguration(props: AmsConfigurationProps) {
   }
 
   return (
-    <div className="border border-black p-2 rounded-sm">
-      <div className="text-xl">AMS {props.id + 1}</div>
-      <div className="flex space-x-2 pt-2 flex-row">{slots}</div>
+    <div className="max-w-md rounded-2xl bg-gray-50 p-8 shadow-xl m-4">
+        <div className="mb-6 flex items-center gap-4">
+          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">
+            <svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" strokeWidth="{2}" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M12 18a9 9 0 100-18 9 9 0 000 18z" />
+            </svg>
+          </div>
+          <h2 className="text-xl font-semibold text-gray-800">AMS {props.id + 1}</h2>
+        </div>
+        <div className="grid grid-cols-4 gap-4">
+          {slots}
+        </div>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import type { Spool } from "@app/types";
 import { MultiColorDirection } from "@app/types";
 import { cva, type VariantProps } from "class-variance-authority";
 
-const spoolChip = cva(["border", "border-2"], {
+const spoolChip = cva(["aspect-square", "rounded-lg", "border-2","shadow-md"], {
   variants: {
     size: {
       large: ["w-[60px]", "h-[60px]"],
@@ -80,14 +80,14 @@ export default function AmsSpoolChip({
     <div className="flex flex-col items-center">
       <div className={spoolChip({ size, active })}>
         <div
-          className="h-full"
+          className="h-full rounded-lg"
           style={{
             clipPath: `inset(${100 - percentage}% 0 0 0)`,
             background: spool ? getBackgroundColor(spool) : undefined,
           }}
-        />
+        ></div>
       </div>
-      {showMaterial && <span>{materialName}</span>}
+      {showMaterial && <span className="mt-1 text-sm font-normal">{materialName}</span>}
     </div>
   );
 }
