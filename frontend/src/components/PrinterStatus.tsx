@@ -67,6 +67,9 @@ if (data.connected) {
           <StatusChip text={data?.connected ? "Yes" : "No"} state={data?.connected} />
           <StatusChip text={ data?.status?.print?.gcode_state} state={data?.status?.print?.gcode_state ? true : false} />
           <StatusChip text={data?.status.print.wifi_signal} state={data?.status.print.wifi_signal.split("dBm")[0] > -80 ? true : false }/>
+          <button onClick={refresh} className="flex flex-nowrap border-0 items-center gap-1 px-1 py-1 rounded-lg text-xs text-gray-400 bg-gray-800 hover:bg-blue-800 cursor-pointer">
+            {tempIcon} refresh
+          </button>
         </div>
         <div className="flex items-center gap-2">
           <TempChip text={"Bed"} icon={tempIcon} temp={data?.status?.print?.bed_temper} targetTemp={data?.status?.print?.bed_target_temper} />
@@ -81,7 +84,7 @@ if (data.connected) {
           <span> Layer: {data?.status?.print?.layer_num} /{" "}
                 {data?.status?.print?.total_layer_num} 
           </span>)}
-        <button onClick={refresh} className="text-blue-500 hover:underline">
+        <button onClick={refresh} className="">
           Refresh
         </button>
       </BasicCard>
