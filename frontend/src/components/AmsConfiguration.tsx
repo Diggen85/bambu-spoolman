@@ -5,6 +5,7 @@ import { useSpoolQuery } from "@app/hooks/spool";
 import AmsSpoolChip from "./AmsSpoolChip";
 import { Suspense } from "react";
 import useChangeStore from "@app/stores/spoolChangeStore";
+import BasicCard, { BasicCardProps } from "./BasicCard";
 
 export type AmsConfigurationProps = {
   id: number;
@@ -63,19 +64,13 @@ export default function AmsConfiguration(props: AmsConfigurationProps) {
     );
   }
 
-  return (
-    <div className="max-w-md rounded-2xl bg-gray-50 p-8 shadow-xl m-4">
-        <div className="mb-6 flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">
-            <svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" strokeWidth="{2}" viewBox="0 0 24 24">
+const icon = (<svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" strokeWidth="{2}" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M12 18a9 9 0 100-18 9 9 0 000 18z" />
-            </svg>
-          </div>
-          <h2 className="text-xl font-semibold text-gray-800">AMS {props.id + 1}</h2>
-        </div>
-        <div className="grid grid-cols-4 gap-4">
+            </svg>);
+
+  return (
+<BasicCard headline={"AMS " + props.id + 1 } icon={icon}>
           {slots}
-        </div>
-    </div>
+</BasicCard>
   );
 }
