@@ -70,7 +70,9 @@ const icon = (<svg className="h-6 w-6 text-blue-600" fill="none" stroke="current
 
   return (
 <BasicCard headline={"AMS " + props.id + 1 } icon={icon}>
+  <div className="grid grid-cols-4 gap-4">
           {slots}
+  </div>
 </BasicCard>
   );
 }

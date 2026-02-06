@@ -21,9 +21,7 @@ export default function BasicCard(props: BasicCardProps) {
           {props.subline && (<h2 className="text-xs font-semibold text-gray-600">{props.subline}</h2>)}
           </div>
         </div>
-        <div className="grid grid-cols-4 gap-4">
-          {props.children}
-        </div>
+        {props.children}
     </div>
   );
 
