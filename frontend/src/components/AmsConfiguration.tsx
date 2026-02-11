@@ -5,7 +5,8 @@ import { useSpoolQuery } from "@app/hooks/spool";
 import AmsSpoolChip from "./AmsSpoolChip";
 import { Suspense } from "react";
 import useChangeStore from "@app/stores/spoolChangeStore";
-import BasicCard, { BasicCardProps } from "./BasicCard";
+import BasicCard from "./BasicCard";
+import { Spool } from "lucide-react";
 
 export type AmsConfigurationProps = {
   id: number;
@@ -64,12 +65,9 @@ export default function AmsConfiguration(props: AmsConfigurationProps) {
     );
   }
 
-const icon = (<svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" strokeWidth="{2}" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M12 18a9 9 0 100-18 9 9 0 000 18z" />
-            </svg>);
 
   return (
-<BasicCard headline={"AMS " + props.id + 1 } icon={icon}>
+<BasicCard headline={"AMS " + props.id + 1 } icon={<Spool />}>
   <div className="grid grid-cols-4 gap-4">
           {slots}
   </div>
