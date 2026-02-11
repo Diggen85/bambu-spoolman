@@ -11,7 +11,7 @@ export default function Index() {
         <h1 className="text-3xl text-center">Bambu Spoolman Integration</h1>
         <div className="grid grid-cols-1 md:grid-cols-2">
           <Suspense fallback={<div>Loading...</div>}>
-            <div className="object-center p-4">
+            <div className="place-content-top flex flex-col flex-grow gap-4 p-4">
               <Configuration />
               <PrinterStatus />
             </div>

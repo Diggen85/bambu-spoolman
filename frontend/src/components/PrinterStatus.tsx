@@ -54,11 +54,18 @@ export default function PrinterStatus() {
 if (data.connected) {
   return (
     <React.Suspense fallback={<h1 className="text-lg font-semibold text-gray-600">Loading...</h1>}>
-      <BasicCard headline={"Printerstatus"} subline={"Updated:" + new Date(data?.last_update * 1000).toLocaleString()} icon={<Printer />}>
+      <BasicCard headline={"Printerstatus"} 
+        subline={"Updated:" + new Date(data?.last_update * 1000).toLocaleString()} 
+        icon={<Printer />}
+        action={
+          <button
+            onClick={refresh}
+            type="button"
+            className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+          ><RefreshCw /></button>
+        }
+      >
         <div className="flex flex-row-reverse gap-4 mb-6 justify-items-end">
-          <button onClick={refresh} className="flex flex-nowrap border-0 items-center gap-1 px-1 py-1 rounded-lg text-xs bg-gray-200 text-gray-600 hover:bg-gray-600 hover:text-gray-200 cursor-pointer">
-            <RefreshCw />
-          </button>
           <StatusChip text={""} state={data?.connected} icon={<Activity />} />
           {data?.status?.print?.gcode_state == "RUNNING" && (
             <StatusChip text={data?.status?.print?.gcode_state} state={true} icon={<Play />}/>
