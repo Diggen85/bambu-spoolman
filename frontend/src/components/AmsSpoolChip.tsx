@@ -77,7 +77,7 @@ export default function AmsSpoolChip({
   }
 
   return (
-    <div className="flex flex-col items-center min-w-[68px] min-h-[68px] w-auto p-2 h-auto bg-gray-100 rounded-lg">
+    <div className="flex flex-col items-center w-[68px] p-2 h-auto bg-gray-100 rounded-lg">
       <div className={filamentChip({ size, active })}>
         <div
           className="h-full rounded-lg"

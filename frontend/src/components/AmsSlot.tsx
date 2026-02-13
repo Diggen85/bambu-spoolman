@@ -9,6 +9,7 @@ import useChangeStore from "@app/stores/spoolChangeStore";
 type AmsSlotProps = {
   spoolId: number;
   slotId: number;
+  amsId: number;
   active: boolean;
   locked: boolean;
 };
@@ -21,7 +22,7 @@ export default function AmsSlot(props: AmsSlotProps) {
   const openChangeModel = () => {
     setSpoolId(props.spoolId);
     open(<SpoolChangeModel trayId={props.slotId} locked={props.locked} />, {
-      title: "Update Spool " + (Number(props.slotId) + 1 ).toString()
+      title: "Update AMS " + (Number(props.amsId) + 1 ).toString() + " Slot " + (Number(props.slotId) + 1 ).toString()
     });
   };
   return (

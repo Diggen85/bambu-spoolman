@@ -9,12 +9,8 @@ async function query() {
   return response.json();
 }
 
-export type Spools = {
-  [key: string]: Spool;
-};
-
 export default function useSpoolsQuery() {
-  return useSuspenseQuery<Spools>({
+  return useSuspenseQuery<Spool[]>({
     queryKey: ["spools"],
     queryFn: query,
     retry: false,

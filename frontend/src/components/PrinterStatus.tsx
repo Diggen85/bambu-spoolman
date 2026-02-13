@@ -3,23 +3,8 @@ import type { PrinterStatus } from "@app/types";
 import { useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import BasicCard from "./BasicCard";
-
 import { Wifi, Activity, Play, Square, RefreshCw, Thermometer, Fan, Printer } from "lucide-react";
-
-type StatusChip = {
-  text: string;
-  icon?: string | JSX.Element ;
-  state: boolean;
-};
-
-function StatusChip(props: StatusChip) {
-  const chipClass = "flex flex-nowrap  border-0 items-center gap-1 px-1 py-1  rounded-lg text-xs font-bold " + (props.state ? "bg-green-800 text-green-400" : "bg-red-800 text-red-400");
-  return (
-      <div className={chipClass} >
-       {props.icon}{props.text}
-      </div>
-  );
-};
+import StatusChip from "./BasicChip";
 
 type TempChip = {
   text: string;

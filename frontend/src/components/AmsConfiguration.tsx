@@ -47,6 +47,7 @@ export function AmsCard(props: AmsCardProps) {
     slots.push(
       <AmsSlot
         key={i}
+        amsId={props.id}
         slotId={i}
         spoolId={spool}
         active={i == data.active_tray}
