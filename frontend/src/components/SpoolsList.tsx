@@ -7,7 +7,7 @@ export default function SpoolsList() {
     return (
         <>
         {data.map((item: Spool) => 
-            <div className="flex shadow-md gap-1 p-2 items-center">
+            <div className="flex shadow-xl gap-2 p-2 items-center rounded-lg">
                 <div className="flex w-12 p-2 text-2xl justify-end">
                     {item.id}
                 </div>

@@ -1,6 +1,8 @@
 import { Suspense } from "react";
-import Configuration from "./Configuration";
+import AmsConfiguration from "./AmsConfiguration";
 import PrinterStatus from "./PrinterStatus";
+//import SpoolsList from "./SpoolsList";
+import ExternalSpoolConfiguration from "./ExternalSpoolConfiguration";
 import SpoolsList from "./SpoolsList";
 
 
@@ -18,13 +20,13 @@ export default function Index() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2">
           <Suspense fallback={<div>Loading...</div>}>
-            <div className="flex flex-col max-w-md mx-auto gap-8 p-8 ">
+            <div className="flex flex-col max-w-md mx-auto gap-8 p-8">
               <PrinterStatus />
-              <Configuration />
+              <AmsConfiguration />
+              <ExternalSpoolConfiguration/>
             </div>
-             <div className="place-content-top flex flex-col flex-grow gap-4 p-4">
-                <Configuration />
-              <PrinterStatus />
+             <div className="flex flex-col max-w-md mx-auto gap-8 p-8">
+              <SpoolsList/>
              </div>
           </Suspense>
         </div>

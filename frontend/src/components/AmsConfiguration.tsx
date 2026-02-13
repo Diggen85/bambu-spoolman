@@ -1,50 +1,40 @@
 import useSettings from "@app/hooks/useSettings";
-import { usePopup } from "@app/stores/popupStore";
-import SpoolChangeModel from "./models/SpoolChangeModel";
-import { useSpoolQuery } from "@app/hooks/spool";
-import AmsSpoolChip from "./AmsSpoolChip";
-import { Suspense } from "react";
-import useChangeStore from "@app/stores/spoolChangeStore";
+import AmsSlot from "./AmsSlot";
 import BasicCard from "./BasicCard";
 import { Spool } from "lucide-react";
 
-export type AmsConfigurationProps = {
+export type AmsCardProps = {
   id: number;
 };
 
-type AmsSlotProps = {
-  spoolId: number;
-  slotId: number;
-  active: boolean;
-  locked: boolean;
-};
 
-export function AmsSlot(props: AmsSlotProps) {
-  const { data: spool } = useSpoolQuery(props.spoolId);
-  const { open } = usePopup();
-  const { setSpoolId } = useChangeStore();
 
-  const openChangeModel = () => {
-    setSpoolId(props.spoolId);
-    open(<SpoolChangeModel trayId={props.slotId} locked={props.locked} />, {
-      title: "Update Spool",
-    });
-  };
+function amsCount(trayCount: number) {
+  return Math.ceil(trayCount / 4);
+}
+
+export default function AmsConfiguration() {
+  const { data } = useSettings();
+  const trayCount = data.tray_count || 0;
+  const amsQty = amsCount(trayCount);
+
+  const amsComponents = [];
+  for (let i = 0; i < amsQty; i++) {
+    amsComponents.push(<AmsCard key={i} id={i} />);
+  }
+
+  
   return (
-    <Suspense fallback={<AmsSpoolChip spool={null} />}>
-      <div onClick={openChangeModel} className="cursor-pointer">
-        <AmsSpoolChip
-          spool={spool}
-          active={props.active}
-          showUsage
-          showMaterial
-        />
-      </div>
-    </Suspense>
+    <>
+      {amsQty > 0 && (
+        <>{amsComponents}</>
+      )}
+
+    </>
   );
 }
 
-export default function AmsConfiguration(props: AmsConfigurationProps) {
+export function AmsCard(props: AmsCardProps) {
   const { data } = useSettings();
   const start = props.id * 4;
   const end = start + 4;
