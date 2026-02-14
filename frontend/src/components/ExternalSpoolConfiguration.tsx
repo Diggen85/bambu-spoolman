@@ -12,7 +12,7 @@ export default function ExternalSpoolConfiguration() {
     <BasicCard headline={"External Spool"} icon={<Spool/>}>
       <div className="m-auto">
       <AmsSlot
-        slotId={255}
+        trayId={255}
         spoolId={activeSpool}
         active={false}
         locked={false}

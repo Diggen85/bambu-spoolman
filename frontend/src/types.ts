@@ -180,7 +180,7 @@ export type UpgradeState = {
   status: string;
 };
 
-interface Tray<I> {
+export interface Tray<I> {
   bed_temp: string;
   bed_temp_type: string;
   cali_idx: number;

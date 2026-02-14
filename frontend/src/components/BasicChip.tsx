@@ -26,8 +26,9 @@ const chipCVA = cva(
   {
     variants: {
       status: {
-        ok: ["bg-green-800", "text-green-400"],
-        fail: ["bg-red-800", "text-red-400"],
+        green: ["bg-green-800", "text-green-400"],
+        red: ["bg-red-800", "text-red-300"],
+        yellow: ["bg-yellow-800", "text-yellow-400"],
         neutral: ["bg-gray-400", "text-gray-800"]
       }
     }  
@@ -37,17 +38,16 @@ const chipCVA = cva(
 export interface statusChipProps extends baseProps, VariantProps<typeof chipCVA> {};
 
 export default function StatusChip({status="neutral", ...props}: statusChipProps) {
-  if ( !props.state || props.state == "fail") {
-    status = "fail";
-  } else if ( props.state || props.state == "ok" ) {
-    status = "ok";
+  if ( !props.state || props.state == "red") {
+    status = "red";
+  } else if ( props.state || props.state == "green" ) {
+    status = "green";
+  } else if (props.state == "yellow") {
   } else {
     status="neutral";
   }
 
-  console.log(props.icon);
-
-  return (
+    return (
       <div className={classNames(chipCVA({status}))} >
        {isValidElement(props.icon) && (cloneElement(props.icon, {className: "w-4 h-4"} as LucideProps))}{props.text}
       </div>
