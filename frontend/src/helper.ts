@@ -27,3 +27,13 @@ export const printerStages = new Map();
   printerStages.set(21, "? - After cleaning noozle - ?");
   printerStages.set(255, "? - prin end - ?");
 
+export function remainingTime(value) {
+    let days = Math.floor(value / 1440);
+    let hour = Math.floor((value % 1440) / 60);
+    let minute = Math.floor(value % 60);
+
+
+    value = days + ":" + hour + ":" +minute;
+
+    return value;
+} 

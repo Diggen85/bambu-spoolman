@@ -3,7 +3,7 @@ import StatusChip from "./BasicChip";
 import BasicCard from "./BasicCard";
 import { Bug, FileClock, Gauge, Hourglass, Play, Square } from "lucide-react";
 import { PrinterStatusData, usePrinterStatus } from "@app/hooks/status";
-import { printerStages } from "@app/helper";
+import { printerStages, remainingTime } from "@app/helper";
 
 
   
@@ -50,6 +50,7 @@ return (
             <p>mc_stage: {data?.status?.print?.mc_print_stage}</p>
             <p>MC State: {printerStages.get(data?.status?.print?.mc_print_stage)}</p>
             <p>mc_remaining_time: {data?.status?.print?.mc_remaining_time}</p>
+            <p>mc_remaining_time: {remainingTime(data?.status?.print?.mc_remaining_time)}</p>
             <p>mc_linenum: {data?.status?.print?.mc_print_line_number}</p>
             <p>stg_cur: {data?.status?.print?.stg_cur}</p>
             <p>State: {printerStages.get(data?.status?.print?.stg_cur)}</p>
