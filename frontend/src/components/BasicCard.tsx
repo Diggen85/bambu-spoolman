@@ -13,9 +13,9 @@ export type BasicCardProps = {
 export default function BasicCard(props: BasicCardProps) {
 
   return (
-    <div className="rounded-2xl bg-gray-50 p-4 shadow-xl flex flex-col">
+    <div className="rounded-2xl border-2 bg-gray-100 p-4 shadow-xl flex flex-col">
       <div className="flex flex-row mb-4 gap-4 items-center">
-          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100">
+          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-200 text-gray-800">
             {props.icon}
           </div>
           <div className="h-12 place-content-center flex flex-col flex-grow">

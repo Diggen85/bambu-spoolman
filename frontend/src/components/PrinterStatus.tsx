@@ -15,11 +15,11 @@ type TempChip = {
 
 function TempChip(props: TempChip) {
   return (
-    <div className="text-center px-2 py-2 rounded-lg flex-1 flex flex-col bg-gray-100 justify-center items-center">
+    <div className="text-center px-2 py-2 rounded-lg flex-1 flex flex-col bg-gray-200 justify-center items-center">
       {props.icon}
       <p className="text-sm ">{props.text}</p>
-      <p className="text-sm text-black">{props.temp.toPrecision(2).toString()}</p>
-      <p className="text-sm text-black">{props.targetTemp > 0 ? props.targetTemp.toPrecision(2).toString() : "/ -" } </p>
+      <p className="text-sm text-gray-800">{props.temp.toPrecision(2).toString()}</p>
+      <p className="text-sm text-gray-800">{props.targetTemp > 0 ? props.targetTemp.toPrecision(2).toString() : "/ -" } </p>
     </div>
   );
 
@@ -52,12 +52,6 @@ if (data.connected) {
       >
         <div className="flex flex-row-reverse gap-4 mb-6 justify-items-end">
           <StatusChip text={""} state={data?.connected} icon={<Activity />} />
-          {data?.status?.print?.gcode_state == "RUNNING" && (
-            <StatusChip text={data?.status?.print?.gcode_state} state={true} icon={<Play />}/>
-          )}
-          {data?.status?.print?.gcode_state == "FINISH" && (
-            <StatusChip text={data?.status?.print?.gcode_state} state={true} icon={<Square />}/>
-          )}
           <StatusChip text={data?.status.print.wifi_signal} state={+data?.status.print.wifi_signal.split("dBm")[0] > -80 ? true : false } icon={<Wifi/>} />
 
         </div>
@@ -70,10 +64,6 @@ if (data.connected) {
             <p className="text-sm text-black">{data?.status.print.heatbreak_fan_speed + " rpm"}</p>
           </div>
         </div>
-        {data?.status?.print?.gcode_state == "RUNNING" && (
-          <span> Layer: {data?.status?.print?.layer_num} /{" "}
-                {data?.status?.print?.total_layer_num} 
-          </span>)}
       </BasicCard>
       </React.Suspense>
   );

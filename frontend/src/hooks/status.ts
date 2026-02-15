@@ -6,6 +6,7 @@ export type PrinterStatusData = {
   status: PrinterStatus;
   last_update: number;
 };
+
 export function usePrinterStatus() {
   return useSuspenseQuery<PrinterStatusData>({
     queryKey: ["printer-status"],

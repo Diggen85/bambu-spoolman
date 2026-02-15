@@ -4,6 +4,7 @@ import PrinterStatus from "./PrinterStatus";
 import ExternalSpoolConfiguration from "./ExternalSpoolConfiguration";
 import SpoolsList from "./SpoolsList";
 import Header from "./Header";
+import JobCard from "./JobCard";
 
 
 export default function Index() {
@@ -15,6 +16,7 @@ export default function Index() {
           <Suspense fallback={<div>Loading...</div>}>
             <div className="flex flex-col max-w-md mx-auto gap-8 p-8">
               <PrinterStatus />
+              <JobCard/>
               <AmsConfiguration />
               <ExternalSpoolConfiguration/>
             </div>

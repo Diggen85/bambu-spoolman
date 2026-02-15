@@ -27,8 +27,8 @@ function ToolTip(props: ToolTipProps){
   const orgSpool = (parseInt(props.tray.tray_uuid) == 0  ? false : true);
   return (
     <div className="absolute z-50 left-1/2 -translate-x-1/2 bottom-full mb-0 w-max">
-      <div className="rounded-2xl shadow-xl flex flex-col">
-          <div className="bg-gray-800 text-gray-200 rounded-t-2xl p-2">
+      <div className="rounded-2xl shadow-xl flex flex-col border-2 border-gray-300">
+          <div className="bg-gray-600 text-gray-200 rounded-t-2xl p-2">
             <h1 className=" font-bold text-xl text-center">Slot {parseInt(props.tray.id,10) + 1}</h1>
           </div>
           <div className="text-sm text-gray-800  bg-gray-200 rounded-b-2xl px-4 pb-4">
@@ -39,7 +39,7 @@ function ToolTip(props: ToolTipProps){
             <p><WindArrowDown size={16} className="inline-block" /> {props.tray.k.toFixed(2)}</p>
           </div>
       </div>
-      <div className="absolute left-1/2 -translate-x-1/2 w-0 h-0 border-l-[16px] border-l-transparent border-r-[16px] border-r-transparent top-full border-t-[16px] shadow-xl"/>
+      <div className="absolute left-1/2 -translate-x-1/2 w-0 h-0 border-l-[16px] border-l-transparent border-r-[16px] border-r-transparent top-full border-t-[16px] shadow-xl border-gray-300"/>
     </div>);
 
 }

@@ -14,7 +14,7 @@ type baseProps= {
 const chipCVA = cva(
   [
     "flex flex-nowrap",
-    "border-0",
+    "border-2",
     "items-center",
     "gap-1",
     "px-1",
@@ -26,9 +26,9 @@ const chipCVA = cva(
   {
     variants: {
       status: {
-        green: ["bg-green-800", "text-green-400"],
-        red: ["bg-red-800", "text-red-300"],
-        yellow: ["bg-yellow-800", "text-yellow-400"],
+        green: ["bg-green-300", "text-green-600", "border-green-200"],
+        red: ["bg-red-300", "text-red-600", "border-red-200"],
+        yellow: ["bg-yellow-300", "text-yellow-600", "border-yellow-200"],
         neutral: ["bg-gray-400", "text-gray-800"]
       }
     }  
