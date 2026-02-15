@@ -1,5 +1,5 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
-import type { Ams, AmsStatus, PrinterStatus } from "@app/types";
+import type { Ams, PrinterStatus } from "@app/types";
 
 export type PrinterStatusData = {
   connected: boolean;
