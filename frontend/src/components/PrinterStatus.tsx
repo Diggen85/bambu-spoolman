@@ -3,7 +3,7 @@ import type { PrinterStatus } from "@app/types";
 import { useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import BasicCard from "./BasicCard";
-import { Wifi, Activity, Play, Square, RefreshCw, Thermometer, Fan, Printer } from "lucide-react";
+import { Wifi, Activity, RefreshCw, Thermometer, Fan, Printer, } from "lucide-react";
 import StatusChip from "./BasicChip";
 
 type TempChip = {
@@ -15,11 +15,12 @@ type TempChip = {
 
 function TempChip(props: TempChip) {
   return (
-    <div className="text-center px-2 py-2 rounded-lg flex-1 flex flex-col bg-gray-200 justify-center items-center">
-      {props.icon}
-      <p className="text-sm ">{props.text}</p>
-      <p className="text-sm text-gray-800">{props.temp.toPrecision(2).toString()}</p>
-      <p className="text-sm text-gray-800">{props.targetTemp > 0 ? props.targetTemp.toPrecision(2).toString() : "/ -" } </p>
+    <div className="px-2 py-2 rounded-lg flex flex-row bg-gray-200 ">
+      <div className="flex justify-center items-center -h[24px] aspect-square">{props.icon}</div>
+      <div className="flex flex-col text-gray-800 text-start">
+        <div className="text-xs font-semibold">{props.text} Temperature</div>
+        <div className="text-xs justify-start">{props.temp.toPrecision(2).toString()} {props.targetTemp > 0 ? props.targetTemp.toPrecision(2).toString() : "/ -" }</div>
+      </div>
     </div>
   );
 

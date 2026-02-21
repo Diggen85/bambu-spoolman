@@ -5,6 +5,7 @@ import ExternalSpoolConfiguration from "./ExternalSpoolConfiguration";
 import SpoolsList from "./SpoolsList";
 import Header from "./Header";
 import JobCard from "./JobCard";
+import { SpoolSelect } from "./SpoolsSelect";
 
 
 export default function Index() {
@@ -21,7 +22,7 @@ export default function Index() {
               <ExternalSpoolConfiguration/>
             </div>
              <div className="flex flex-col max-w-md mx-auto gap-8 p-8">
-              <SpoolsList/>
+              <SpoolSelect spoolId="4" onClick={(id)=>(console.log("select " + id))}/>
              </div>
           </Suspense>
         </div>

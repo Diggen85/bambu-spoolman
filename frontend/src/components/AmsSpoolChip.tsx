@@ -2,11 +2,12 @@ import type { Spool } from "@app/types";
 import { MultiColorDirection } from "@app/types";
 import { cva, type VariantProps } from "class-variance-authority";
 
-const filamentChip = cva(["aspect-square", "rounded-lg", "border-2"], {
+const filamentChipSpool = cva(["aspect-square"], {
   variants: {
     size: {
-      large: ["w-[60px]", "h-[60px]"],
-      small: ["w-[30px]", "h-[30px]"],
+      large: ["w-[60px]", "h-[60px]", "rounded-lg","border-2"],
+      small: ["w-[24px]", "h-[24px]","rounded-lg","border-2"],
+      tiny: ["w-[16px]", "h-[16px]","border-[1px]"],
     },
     locked: {
       true: ["border-red-500"],
@@ -18,9 +19,31 @@ const filamentChip = cva(["aspect-square", "rounded-lg", "border-2"], {
   },
 });
 
+const filamentChipFill = cva(["h-full"], {
+  variants: {
+    size: {
+      large: ["rounded-lg"],
+      small: ["rounded-lg"],
+      tiny: [],
+    },
+
+  },
+});
+
+const filamentChip = cva(["flex", "flex-col", "items-center", "h-auto", "bg-gray-200"], {
+  variants: {
+    size: {
+      large: [ "rounded-lg", "w-[68px]","p-2"],
+      small: ["rounded-lg", "p-1"],
+      tiny: [ "p-1"],
+    },
+  },
+});
+
 interface SpoolChipProps extends VariantProps<typeof filamentChip> {
   spool: Spool | null;
   showUsage?: boolean;
+  locked?: boolean;
   showMaterial?: boolean;
 }
 
@@ -77,10 +100,10 @@ export default function AmsSpoolChip({
   }
 
   return (
-    <div className="flex flex-col items-center w-[68px] p-2 h-auto bg-gray-200 rounded-lg">
-      <div className={filamentChip({ size, locked })}>
+    <div className={filamentChip({size})}>
+      <div className={filamentChipSpool({ size, locked })}>
         <div
-          className="h-full rounded-lg"
+          className={filamentChipFill({size})}
           style={{
             clipPath: `inset(${100 - percentage}% 0 0 0)`,
             background: spool ? getBackgroundColor(spool) : undefined,
