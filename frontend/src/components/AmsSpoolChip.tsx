@@ -8,13 +8,13 @@ const filamentChip = cva(["aspect-square", "rounded-lg", "border-2"], {
       large: ["w-[60px]", "h-[60px]"],
       small: ["w-[30px]", "h-[30px]"],
     },
-    active: {
-      true: ["border-yellow-500"],
+    locked: {
+      true: ["border-red-500"],
       false: ["border-black"],
     },
   },
   defaultVariants: {
-    active: false,
+    locked: false,
   },
 });
 
@@ -62,7 +62,7 @@ function getBackgroundColor(spool: Spool) {
 
 export default function AmsSpoolChip({
   spool,
-  active,
+  locked,
   size = "large",
   showUsage,
   showMaterial,
@@ -78,7 +78,7 @@ export default function AmsSpoolChip({
 
   return (
     <div className="flex flex-col items-center w-[68px] p-2 h-auto bg-gray-200 rounded-lg">
-      <div className={filamentChip({ size, active })}>
+      <div className={filamentChip({ size, locked })}>
         <div
           className="h-full rounded-lg"
           style={{

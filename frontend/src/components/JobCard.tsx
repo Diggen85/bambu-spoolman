@@ -33,6 +33,7 @@ export default function JobCard() {
 const data: PrinterStatusData = result.data;
 
 return (
+  data.connected && (
   <BasicCard headline="Job Status" subline={data?.status?.print?.subtask_name} icon={<FileClock/>}>
         <div className="flex flex-row-reverse gap-4 mb-6 justify-items-end">
           {data?.status.print?.gcode_state == "RUNNING" && (
@@ -75,5 +76,6 @@ return (
           </div>
           </div>
   </BasicCard>
+  )
 );
 };

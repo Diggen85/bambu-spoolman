@@ -54,6 +54,7 @@ export function AmsCard(props: AmsCardProps) {
         key={i}
         amsId={props.id}
         trayId={i} 
+        tray={ams.tray[i]}
         spoolId={spool}
         active={i == data.active_tray}
         locked={locked_trays.includes(i)}
