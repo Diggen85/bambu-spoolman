@@ -1,6 +1,7 @@
 import type { Spool } from "@app/types";
 import { MultiColorDirection } from "@app/types";
 import { cva, type VariantProps } from "class-variance-authority";
+import { LockKeyhole, SpoolIcon, LockKeyholeOpen, TriangleAlert } from "lucide-react";
 
 const filamentChipSpool = cva(["aspect-square"], {
   variants: {
@@ -16,17 +17,6 @@ const filamentChipSpool = cva(["aspect-square"], {
   },
   defaultVariants: {
     locked: false,
-  },
-});
-
-const filamentChipFill = cva(["h-full"], {
-  variants: {
-    size: {
-      large: ["rounded-lg"],
-      small: ["rounded-lg"],
-      tiny: [],
-    },
-
   },
 });
 
@@ -76,7 +66,7 @@ function getBackgroundColor(spool: Spool) {
     }
   }
   else if (spool.filament.color_hex) {
-    return "#" + spool.filament.color_hex;
+    return "linear-gradient(90deg, #" + spool.filament.color_hex + " 100%)";
   }
   else {
     return "repeating-linear-gradient( 45deg, transparent 0 20px, red 20px 40px)";
@@ -101,16 +91,22 @@ export default function AmsSpoolChip({
 
   return (
     <div className={filamentChip({size})}>
-      <div className={filamentChipSpool({ size, locked })}>
-        <div
-          className={filamentChipFill({size})}
-          style={{
-            clipPath: `inset(${100 - percentage}% 0 0 0)`,
-            background: spool ? getBackgroundColor(spool) : undefined,
-          }}
-        ></div>
+      <div className={filamentChipSpool({ size, locked })+ " grid grid-cols-1 grid-rows-2 gap-1"}
+                style={{
+           background: spool ? getBackgroundColor(spool) : undefined,
+           backgroundPosition: "bottom",
+           backgroundRepeat: "no-repeat",
+           backgroundSize: "100% "+ percentage +"%",
+          }}>
+        {(size == "large") && (
+          <>
+          <LockKeyholeOpen className="col-start-2"/>
+          {/*<LockKeyhole className="col-start-2"/>*/}
+          <TriangleAlert className="col-start-2 row-start-2"/>
+          </>
+      )}
       </div>
-      {showMaterial && <span className="mt-1 text-sm font-normal">{materialName}</span>}
+      {showMaterial && (<div className="mt-1 text-sm font-normal overflow-visible w-full flex flex-row items-center justify-center "><SpoolIcon size="12" className="inline-block shrink-0"/> {materialName}</div>)}
     </div>
   );
 }
