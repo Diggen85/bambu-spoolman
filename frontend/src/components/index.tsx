@@ -22,7 +22,7 @@ export default function Index() {
               <ExternalSpoolConfiguration/>
             </div>
              <div className="flex flex-col max-w-md mx-auto gap-4 p-6">
-              <SpoolSelect spoolId="4" onClick={(id)=>(console.log("select " + id);)}/>
+              <SpoolSelect spoolId="4" onClick={(id) => (console.log("select " + id))}/>
              </div>
           </Suspense>
         </div>

@@ -10,7 +10,7 @@ import { SpoolSelect } from "./SpoolsSelect";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AmsSlotProps } from "./AmsSlot";
 import Button from "./Button";
-import Colour from "@app/deltae"
+import Colour from "@app/helpers/deltae"
 import { TriangleAlert } from "lucide-react";
 
 function SpoolmanInformation({ spool }: {spool: Spool}) {

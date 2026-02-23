@@ -7,7 +7,7 @@ import useChangeStore from "@app/stores/spoolChangeStore";
 import { useGetAmsTrayByTray, useGetAmsByTray } from "@app/hooks/status";
 import { Tray } from "@app/types";
 import { Palette,  Thermometer, RulerDimensionLine, WindArrowDown, SpoolIcon, TriangleAlert } from "lucide-react";
-import Colour from "@app/deltae"
+import Colour from "@app/helpers/deltae"
 
 type AmsSlotProps = {
   spoolId: number;

@@ -5,7 +5,7 @@ import { Suspense, useState } from "react";
 
 import { useGetAmsTrayByTray } from "@app/hooks/status";
 import { TriangleAlert } from "lucide-react";
-import Colour from "@app/deltae"
+import Colour from "@app/helpers/deltae"
 
 import SpoolSelectPopup from "./SpoolSelectPopUp";
 import AmsSlotToolTip from "./AmsSlotToolTip";
@@ -27,21 +27,11 @@ export default function AmsSlot(props: AmsSlotProps) {
   const { data: spool } = useSpoolQuery(props.spoolId);
 
 
-  let spoolDeltae;
+  let warning = false;
   if (props?.tray?.tray_color && spool?.filament.color_hex) {
     const deltae = Colour.deltaE00(Colour.hex2lab("#" + props?.tray?.tray_color.substring(0,6)),Colour.hex2lab(spool.filament.color_hex.substring(0,6)));
     if (deltae > 10) {
-      spoolDeltae = (
-      <div className="absolute z-10 left-1/2 -translate-x-1/2 -translate-y-16">
-        <TriangleAlert className="text-yellow-600" fill="rgb(253 224 71)"/>
-      </div>
-      );
-    } else if (deltae > 50) {
-      spoolDeltae = (
-      <div className="absolute z-10 left-1/2 -translate-x-1/2 -translate-y-16">
-        <TriangleAlert className="text-red-600" fill="rgb(252 165 165)"/>
-      </div>
-      );
+      warning = true;
     }
   };
 
@@ -60,8 +50,8 @@ export default function AmsSlot(props: AmsSlotProps) {
           locked={props.locked}
           showUsage
           showMaterial
+          warning={warning}
         /> 
-      {spoolDeltae}
       </div>
     </Suspense>
   );
