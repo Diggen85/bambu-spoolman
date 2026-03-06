@@ -15,15 +15,19 @@ export default function Index() {
         <Header/>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
           <Suspense fallback={<div>Loading...</div>}>
-            <div className="flex flex-col max-w-md mx-auto gap-4 p-6">
+            <div className="flex flex-col max-w-md mx-auto gap-4 p-6 w-96">
               <PrinterStatus />
               <JobCard/>
+            </div>
+            <div className="flex flex-col max-w-md mx-auto gap-4 p-6 w-96 md:col-start-2 xl:col-start-2 md:row-start-1">
               <AmsConfiguration />
+            </div>
+            <div className="flex flex-col max-w-md mx-auto gap-4 p-6 w-96 md:col-start-2 xl:col-start-2 md:row-start-2">
               <ExternalSpoolConfiguration/>
             </div>
-             <div className="flex flex-col max-w-md mx-auto gap-4 p-6">
+           <div className="flex flex-col max-w-md mx-auto gap-4 p-6 w-96 xl:col-start-3 xl:row-start-1">
               <SpoolSelect spoolId="4" onClick={(id) => (console.log("select " + id))}/>
-             </div>
+            </div>
           </Suspense>
         </div>
       </div>

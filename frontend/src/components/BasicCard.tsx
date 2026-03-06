@@ -13,14 +13,14 @@ export type BasicCardProps = {
 export default function BasicCard(props: BasicCardProps) {
 
   return (
-    <div className="rounded-2xl border-2 bg-gray-100 p-4 shadow-xl flex flex-col">
+    <div className="rounded-2xl border-2 bg-gray-100 p-4 shadow-xl flex flex-col w-full">
       <div className="flex flex-row mb-4 gap-4 items-center">
-          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-200 text-gray-800">
+          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-200 text-gray-800 flex-shrink-0">
             {props.icon}
           </div>
           <div className="h-12 place-content-center flex flex-col flex-grow">
           <h2 className="text-xl font-semibold text-gray-800 ">{props.headline}</h2>
-          {props.subline && (<h2 className="text-xs font-semibold text-gray-600">{props.subline}</h2>)}
+          {props.subline && (<h2 className="text-xs font-semibold text-gray-600  overflow-hidden">{props.subline}</h2>)}
           </div>
         <div className="items-top flex flex-grow-0">
           {props.action}

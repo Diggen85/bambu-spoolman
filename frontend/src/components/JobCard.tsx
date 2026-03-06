@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import StatusChip from "./BasicChip";
 import BasicCard from "./BasicCard";
-import { Bug, FileClock, Gauge, Hourglass, Play, Square } from "lucide-react";
+import { Bug, Circle, Fan, FileClock, Gauge, Hourglass, Pause, Play, Square, X } from "lucide-react";
 import { PrinterStatusData, usePrinterStatus } from "@app/hooks/status";
-import { printerStages, remainingTime } from "@app/helper";
+import { fanSpeedLevel, fanSpeedPercentage, printerStages, remainingTime, speedLevel } from "@app/helper";
 
 
   
@@ -33,44 +33,63 @@ export default function JobCard() {
 const data: PrinterStatusData = result.data;
 
 return (
-  data.connected && (
+  data.connected && 
+  !(data?.status?.print?.gcode_state == "IDLE" || data?.status?.print?.gcode_state == "FINISH") && 
+  !(data?.status?.print?.print_type == "idle") && 
+  (
   <BasicCard headline="Job Status" subline={data?.status?.print?.subtask_name} icon={<FileClock/>}>
-        <div className="flex flex-row-reverse gap-4 mb-6 justify-items-end">
+        <div className="flex flex-row-reverse flex-wrap gap-1">
           {data?.status.print?.gcode_state == "RUNNING" && (
-            <StatusChip text={data?.status.print?.gcode_state} state={true} icon={<Play />}/>
+            <StatusChip text={data?.status.print?.gcode_state} state="green" icon={<Play />}/>
           )}
-          {data?.status?.print?.gcode_state == "FINISH" && (
-            <StatusChip text={data?.status.print?.gcode_state} state={true} icon={<Square />}/>
+          {data?.status?.print?.gcode_state == "PAUSE" && (
+            <StatusChip text={data?.status.print?.gcode_state} state="yellow" icon={<Pause />}/>
           )}
-        <StatusChip text={"Speed " + data?.status.print?.spd_lvl.toString()} state="neutral" icon={<Gauge/>}/>
+          {data?.status?.print?.gcode_state == "FAILED" && (
+            <StatusChip text={data?.status.print?.gcode_state} state="red" icon={<X />}/>
+          )}
         </div>
-        
-        <div className="grid grid-cols-2">
-          
-          <div className="flex flex-col text-sm col-start-2">
+        <div className="grid grid-cols-2 mt-4">
+          <div className="flex flex-col text-sm">
+            {/*
+            <p> {data.status.print.gcode_state} </p>
+
             <p>mc_stage: {data?.status?.print?.mc_print_stage}</p>
-            <p>MC State: {printerStages.get(data?.status?.print?.mc_print_stage)}</p>
+            <p>MC State: {printerStages.get(parseInt(data?.status?.print?.mc_print_stage,10))}</p>
+            
+            <p>mc_sub_stage: {data?.status?.print?.mc_print_sub_stage}</p>
+            <p>MC Sub State: {printerStages.get(data?.status?.print?.mc_print_sub_stage)}</p>
+            
             <p>mc_remaining_time: {data?.status?.print?.mc_remaining_time}</p>
+     
             <p>mc_remaining_time: {remainingTime(data?.status?.print?.mc_remaining_time)}</p>
-            <p>mc_linenum: {data?.status?.print?.mc_print_line_number}</p>
-            <p>stg_cur: {data?.status?.print?.stg_cur}</p>
-            <p>State: {printerStages.get(data?.status?.print?.stg_cur)}</p>
-            <p>stg: {data?.status?.print?.stg.length}</p>
-            <ul>
+            */}
+            <p>Current Stage: {printerStages.get(data?.status?.print?.stg_cur)}</p>
+            <p>Print Type: {data?.status?.print?.print_type}</p>
+          </div>
+          <div className="flex flex-col text-sm col-start-2">
+            <p>Past Stages:</p>
+            <ul className="text-xs">
               {data?.status?.print?.stg.map((val,id) => 
-                <li key={id}>{val} - {printerStages.get(val)}</li>
+                <li key={id}>{printerStages.get(val)}</li>
               )}
             </ul>
-            <p>print_type: {data?.status?.print?.print_type}</p>
+            
           </div>
 
           <div className="flex flex-col grow col-span-2">
-            <div className="flex flex-row-reverse text-sm align-bottom"> 
+            <div className="flex flex-row-reverse text-xs align-bottom"> 
+              Remaining Time: {remainingTime(data?.status?.print?.mc_remaining_time)} - 
               Layer: {data?.status?.print?.layer_num + " / " + data?.status?.print?.total_layer_num} 
             </div>
             <div className="h-[16px] w-full rounded-lg border-2 border-gray-600 shadow-lg">
-              <div className="h-full bg-gradient-to-r from-blue-800 to-blue-600"
-                          style={{clipPath: `inset(0 ${100 - data?.status?.print?.mc_percent}% 0 0)`}}>
+              <div className="h-full w-full bg-gradient-to-r from-blue-800 to-blue-500"
+                style={{
+                  backgroundPosition: "left",
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: data?.status?.print?.mc_percent + "% 100% "
+                }}
+              >
               </div>
             </div>
           </div>

@@ -8,6 +8,7 @@ type baseProps= {
   text: string;
   icon?: ReactElement;
   state: string | boolean;
+  title?: string;
 };
 
 
@@ -21,15 +22,14 @@ const chipCVA = cva(
     "py-1",
     "rounded-lg",
     "text-xs",
-    "font-bold",
   ],
   {
     variants: {
       status: {
-        green: ["bg-green-300", "text-green-600", "border-green-200"],
-        red: ["bg-red-300", "text-red-600", "border-red-200"],
-        yellow: ["bg-yellow-300", "text-yellow-600", "border-yellow-200"],
-        neutral: ["bg-gray-400", "text-gray-800"]
+        green: ["bg-green-200", "text-green-800", "border-green-300"],
+        red: ["bg-red-300", "text-red-800", "border-red-200"],
+        yellow: ["bg-yellow-300", "text-yellow-800", "border-yellow-200"],
+        neutral: ["bg-gray-200", "text-gray-800", "border-gray-300"]
       }
     }  
   }
@@ -37,19 +37,19 @@ const chipCVA = cva(
 
 export interface statusChipProps extends baseProps, VariantProps<typeof chipCVA> {};
 
-export default function StatusChip({status="neutral", ...props}: statusChipProps) {
+export default function StatusChip(props: statusChipProps) {
+  let stat = {status: "neutral"};
   if ( !props.state || props.state == "red") {
-    status = "red";
-  } else if ( props.state || props.state == "green" ) {
-    status = "green";
+    stat.status = "red";
+  } else if ( props.state == "green" || props.state == "ok" || props.state == true) {
+    stat.status = "green";
   } else if (props.state == "yellow") {
-  } else {
-    status="neutral";
-  }
-
-    return (
-      <div className={classNames(chipCVA({status}))} >
-       {isValidElement(props.icon) && (cloneElement(props.icon, {className: "w-4 h-4"} as LucideProps))}{props.text}
+    stat.status = "yellow"
+  };
+console.log(stat.status + " - " + props.state)
+  return (
+      <div className={chipCVA(stat)}  >
+       <p title={props.title}> {isValidElement(props.icon) && (cloneElement(props.icon, {className: "w-[16px] h-[16px] inline"} as LucideProps))} {props.text}</p>
       </div>
   );
 };
